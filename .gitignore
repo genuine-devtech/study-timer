@@ -1,0 +1,12 @@
+# Python cache files (created automatically when code runs)
+__pycache__/
+*.pyc
+
+# Virtual environment folder (we may use one later)
+venv/
+.venv/
+
+# Editor and system files
+.vscode/
+.DS_Store
+Thumbs.db
