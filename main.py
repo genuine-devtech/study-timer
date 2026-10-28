@@ -17,9 +17,9 @@ window.title("Focus Timer")
 window.geometry("300x150")
 
 class StudyTimerApp:
-
     #This is the main window fo the Study Timer App.
-    def __init_(self, root):
+    
+    def __init__(self, root):
         self.root = root
         self.root.title("Study Timer")
         self.root.geometry("420x360")
@@ -28,9 +28,10 @@ class StudyTimerApp:
 
         self.build_layout()
 
+    #layout of the app
     def build_layout(self):
+        
         #This is the part of the work session / break time
-
         self.session_label = tk.Label(
             self.root,
             text="WORK SESSION",
@@ -38,6 +39,33 @@ class StudyTimerApp:
             fg = WORK_COLOR,
             bg=BG_COLOR,
         )
+        self.session_label.pack(pady=(25,5))
+
+        # countdown display
+        self.time_label = tk.Label(
+            self.root,
+            text=f'{WORK_MINUTES:02d}:00',
+            font = ("Roboto", 48, "bold"),
+            fg = TEXT_COLOR,
+            bg=BG_COLOR,
+        )
+        self.time_label.pack()
+
+        #Motivational qoute display
+        self.qoute_label = tk.Label(
+            self.root,
+            text="\"The secret of getting ahead is getting started.\" - Mark Twain",
+            font = ("Roboto", 12, "italic"),
+            fg = QUOTE_COLOR,
+            bg=BG_COLOR,
+            wraplength=350,
+            justify="center"
+        )
+        self.qoute_label.pack(pady = 15)
+
+        
+
+
 
 if __name__ == "__main__":
     root = tk.Tk()
