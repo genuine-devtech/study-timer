@@ -58,8 +58,8 @@ class StudyTimerApp:
         #word of the session
         word_heading = tk.Label(
             self.root,
-            text = "The word will displayed here.",
-            font = ("Roboto", 10, "italic"),
+            text = "WORD OF THE DAY",
+            font = ("Roboto", 14, "bold"),
             fg =  HEADING_COLOR,
             bg = BG_COLOR,
         )
