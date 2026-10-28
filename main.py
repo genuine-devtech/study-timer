@@ -25,6 +25,7 @@ class StudyTimerApp:
         self.root.resizable(False, False)
 
         self.build_layout()
+        self.show_new_word()
 
     #layout of the app
     def build_layout(self):
@@ -49,11 +50,11 @@ class StudyTimerApp:
         )
         self.time_label.pack()
 
-        #Mword of the session
+        #word of the session
         word_heading = tk.Label(
             self.root,
             text = "The word will displayed here.",
-            font = ("Roboto", 12, "italic"),
+            font = ("Roboto", 10, "italic"),
             fg =  HEADING_COLOR,
             bg = BG_COLOR,
         )
@@ -62,11 +63,23 @@ class StudyTimerApp:
         self.word_label = tk.Label(
             self.root,
             text = "WORD OF THE SESSION",
-            font = ("Roboto", 20, "bold"),
+            font = ("Roboto", 10, "italic"),
             fg = WORD_COLOR,
             bg = BG_COLOR,
         )
         self.word_label.pack()
+
+        #the definition filled in by show_new_word
+        self.definition_label = tk.Label(
+            self.root,
+            text = "Definition will be displayed here.",
+            font = ("Roboto", 10),
+            fg = DEFINITION_COLOR,
+            bg = BG_COLOR,
+            wraplength = 400,
+            justify = "center",
+        )
+        self.definition_label.pack(pady = (4,15))
 
         #Row of buttons
         button_frame = tk.Frame(self.root, bg=BG_COLOR)
@@ -94,14 +107,14 @@ class StudyTimerApp:
         )
         self.sessios_label.pack(pady = (15,0))
 
-        def show_new_word(self):
-            try:
-                word, word_type, definition = get_random_word()
-                self.word_label.config(text=f"{word} ({word_type}): {definition}")
-                self.definition_label.config(text=definition)
-            except LookupError:
-                self.word_label.config(text="No word found.")
-                self.definition_label.config(text="The dictionary could not be loded.")
+    def show_new_word(self):
+        try:
+            word, word_type, definition = get_random_word()
+            self.word_label.config(text=f"{word} ({word_type})")
+            self.definition_label.config(text=definition)
+        except LookupError:
+            self.word_label.config(text="No word found.")
+            self.definition_label.config(text="The dictionary could not be loded.")
 
 
 if __name__ == "__main__":
