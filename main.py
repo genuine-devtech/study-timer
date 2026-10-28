@@ -1,4 +1,5 @@
 import tkinter as tk
+from words import get_random_word
 
 # Settings
 WORK_MINUTES = 25 
@@ -9,12 +10,9 @@ BG_COLOR = '#003049'
 TEXT_COLOR = '#fdf0d5' 
 WORK_COLOR = '#d62828'
 BREAK_COLOR = '#f77f00'
-QUOTE_COLOR = '#003049'
-
-# Create the main window
-window = tk.Tk()
-window.title("Focus Timer")
-window.geometry("300x150")
+HEADING_COLOR = '#fcbf49'
+WORD_COLOR = '#eae2b7'
+DEFINITION_COLOR = '#8ac926'
 
 class StudyTimerApp:
     #This is the main window fo the Study Timer App.
@@ -23,7 +21,7 @@ class StudyTimerApp:
         self.root = root
         self.root.title("Study Timer")
         self.root.geometry("420x360")
-        self.root.configure(bg=BG_COLOR)
+        self.root.configure(bg = BG_COLOR)
         self.root.resizable(False, False)
 
         self.build_layout()
@@ -51,17 +49,24 @@ class StudyTimerApp:
         )
         self.time_label.pack()
 
-        #Motivational qoute display
-        self.qoute_label = tk.Label(
+        #Mword of the session
+        word_heading = tk.Label(
             self.root,
-            text = "The motivational qoute will displayed here.",
+            text = "The word will displayed here.",
             font = ("Roboto", 12, "italic"),
-            fg = QUOTE_COLOR,
+            fg =  HEADING_COLOR,
             bg = BG_COLOR,
-            wraplength=350,
-            justify = "center"
         )
-        self.qoute_label.pack(pady = 15)
+        word_heading.pack(pady = (20,0))
+
+        self.word_label = tk.Label(
+            self.root,
+            text = "WORD OF THE SESSION",
+            font = ("Roboto", 20, "bold"),
+            fg = WORD_COLOR,
+            bg = BG_COLOR,
+        )
+        self.word_label.pack()
 
         #Row of buttons
         button_frame = tk.Frame(self.root, bg=BG_COLOR)
