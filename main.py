@@ -37,29 +37,29 @@ class StudyTimerApp:
             text="WORK SESSION",
             font = ("Roboto", 24, "bold"),
             fg = WORK_COLOR,
-            bg=BG_COLOR,
+            bg = BG_COLOR,
         )
         self.session_label.pack(pady=(25,5))
 
         # countdown display
         self.time_label = tk.Label(
             self.root,
-            text=f'{WORK_MINUTES:02d}:00',
+            text = f'{WORK_MINUTES:02d}:00',
             font = ("Roboto", 48, "bold"),
             fg = TEXT_COLOR,
-            bg=BG_COLOR,
+            bg = BG_COLOR,
         )
         self.time_label.pack()
 
         #Motivational qoute display
         self.qoute_label = tk.Label(
             self.root,
-            text="\"The secret of getting ahead is getting started.\" - Mark Twain",
+            text = "Patience is a Virtue that can be cultivated through practice and self-discipline.",
             font = ("Roboto", 12, "italic"),
             fg = QUOTE_COLOR,
-            bg=BG_COLOR,
+            bg = BG_COLOR,
             wraplength=350,
-            justify="center"
+            justify = "center"
         )
         self.qoute_label.pack(pady = 15)
 
