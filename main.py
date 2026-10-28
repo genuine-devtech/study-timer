@@ -79,6 +79,15 @@ class StudyTimerApp:
         self.reset_button = tk.Button(button_frame, text="Reset", width = 8, font=("Roboto", 12, "bold"))
         self.reset_button.grid(row = 0, column = 2, padx = 5)
 
+        #complete session counter
+        self.sessios_label = tk.Label(
+            self.root,
+            text = "Sessions completed: 0",
+            font = ("Roboto", 12),
+            fg = TEXT_COLOR,
+            bg = BG_COLOR,
+        )
+        self.sessios_label.pack(pady = (15,0))
 
 
 if __name__ == "__main__":
