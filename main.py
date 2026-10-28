@@ -63,7 +63,21 @@ class StudyTimerApp:
         )
         self.qoute_label.pack(pady = 15)
 
-        
+        #Row of buttons
+        button_frame = tk.Frame(self.root, bg=BG_COLOR)
+        button_frame.pack(pady = 10)
+
+        #button for starting the timer
+        self.start_button = tk.Button(button_frame, text="Start", width = 8, font=("Roboto", 12, "bold"))
+        self.start_button.grid(row = 0, column = 0, padx = 5)
+
+        #button for the pause function
+        self.pause_button = tk.Button(button_frame, text="Pause", width = 8, font=("Roboto", 12, "bold"))
+        self.pause_button.grid(row = 0, column = 1, padx = 5)
+
+        #button for the reset function
+        self.reset_button = tk.Button(button_frame, text="Reset", width = 8, font=("Roboto", 12, "bold"))
+        self.reset_button.grid(row = 0, column = 2, padx = 5)
 
 
 
