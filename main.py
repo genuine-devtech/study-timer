@@ -54,7 +54,7 @@ class StudyTimerApp:
         #Motivational qoute display
         self.qoute_label = tk.Label(
             self.root,
-            text = "Patience is a Virtue that can be cultivated through practice and self-discipline.",
+            text = "The motivational qoute will displayed here.",
             font = ("Roboto", 12, "italic"),
             fg = QUOTE_COLOR,
             bg = BG_COLOR,
