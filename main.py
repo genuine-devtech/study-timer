@@ -94,6 +94,15 @@ class StudyTimerApp:
         )
         self.sessios_label.pack(pady = (15,0))
 
+        def show_new_word(self):
+            try:
+                word, word_type, definition = get_random_word()
+                self.word_label.config(text=f"{word} ({word_type}): {definition}")
+                self.definition_label.config(text=definition)
+            except LookupError:
+                self.word_label.config(text="No word found.")
+                self.definition_label.config(text="The dictionary could not be loded.")
+
 
 if __name__ == "__main__":
     root = tk.Tk()
