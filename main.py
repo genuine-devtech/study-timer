@@ -24,6 +24,11 @@ class StudyTimerApp:
         self.root.configure(bg = BG_COLOR)
         self.root.resizable(False, False)
 
+        #timer state
+        self.remaining_seconds = WORK_MINUTES * 60
+        self.is_running = False
+        self.timer_id = None
+
         self.build_layout()
         self.show_new_word()
 
@@ -86,15 +91,15 @@ class StudyTimerApp:
         button_frame.pack(pady = 10)
 
         #button for starting the timer
-        self.start_button = tk.Button(button_frame, text="Start", width = 8, font=("Roboto", 12, "bold"))
+        self.start_button = tk.Button(button_frame, text="Start", width = 8, font=("Roboto", 12), command = self.start_timer)
         self.start_button.grid(row = 0, column = 0, padx = 5)
 
         #button for the pause function
-        self.pause_button = tk.Button(button_frame, text="Pause", width = 8, font=("Roboto", 12, "bold"))
+        self.pause_button = tk.Button(button_frame, text="Pause", width = 8, font=("Roboto", 12), command = self.pause_timer)
         self.pause_button.grid(row = 0, column = 1, padx = 5)
 
         #button for the reset function
-        self.reset_button = tk.Button(button_frame, text="Reset", width = 8, font=("Roboto", 12, "bold"))
+        self.reset_button = tk.Button(button_frame, text="Reset", width = 8, font=("Roboto", 12), command = self.reset_timer)
         self.reset_button.grid(row = 0, column = 2, padx = 5)
 
         #complete session counter
@@ -106,6 +111,42 @@ class StudyTimerApp:
             bg = BG_COLOR,
         )
         self.sessios_label.pack(pady = (15,0))
+
+    #timer functions
+    def update_time_display(self):
+        #showing the remaining time as MM:SS
+        minutes, seconds = divmod(self.remaining_seconds, 60)
+        self.time_label.config(text = f"{minutes:02d}: {seconds:02d}")
+
+    #state of the timer
+    def start_timer(self):
+        if not self.is_running and self.remaining_seconds > 0:
+            self.is_running = True
+            self.timer_id = self.root.after(1000, self.count_down)
+
+    #countdown function
+    def count_down(self):
+        self.remaining_seconds -= 1
+        self.update_time_display()
+
+        if self.remaining_seconds > 0:
+            self.timer_id = self.root.after(1000, self.count_down)
+        else:
+            self.is_running = False
+            self.timer_id = None
+
+    #pause function
+    def pause_timer(self):
+        if self.timer_id is not  None:
+            self.root.after_cancel(self.timer_id)
+            self.timer_id = None
+            self.is_running = False
+
+    #reset function
+    def reset_timer(self):
+        self.pause_timer() 
+        self.remaining_seconds = WORK_MINUTES * 60
+        self.update_time_display()
 
     def show_new_word(self):
         try:
