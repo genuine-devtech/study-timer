@@ -16,8 +16,9 @@ window = tk.Tk()
 window.title("Focus Timer")
 window.geometry("300x150")
 
-class FocusTinerApp:
+class StudyTimerApp:
 
+    #This is the main window fo the Study Timer App.
     def __init_(self, root):
         self.root = root
         self.root.title("Study Timer")
@@ -26,3 +27,19 @@ class FocusTinerApp:
         self.root.resizable(False, False)
 
         self.build_layout()
+
+    def build_layout(self):
+        #This is the part of the work session / break time
+
+        self.session_label = tk.Label(
+            self.root,
+            text="WORK SESSION",
+            font = ("Roboto", 24, "bold"),
+            fg = WORK_COLOR,
+            bg=BG_COLOR,
+        )
+
+if __name__ == "__main__":
+    root = tk.Tk()
+    app = StudyTimerApp(root)
+    root.mainloop()
