@@ -151,6 +151,20 @@ class StudyTimerApp:
         self.remaining_seconds = WORK_MINUTES * 60
         self.update_time_display()
 
+    def set_session(self, is_word):
+        self.is_work_session = is_work
+
+        if is_work:
+            self.remaining_seconds = WORK_MINUTES * 60
+            self.session_label.config(text = "WORK SESSION", fg = WORK_COLOR)
+            self.show_new_word()
+        else:
+            self.remaining_seconds = BREAK_MINUTES * 60
+            self.session_label.config(text = "BREAK TIME", fg = BREAK_COLOR)
+
+        self.update_time_display()
+
+
     def show_new_word(self):
         try:
             word, word_type, definition = get_random_word()
