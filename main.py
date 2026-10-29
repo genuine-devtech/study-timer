@@ -151,7 +151,8 @@ class StudyTimerApp:
         self.remaining_seconds = WORK_MINUTES * 60
         self.update_time_display()
 
-    def set_session(self, is_word):
+    #switch the screeen and timer to a work or break session
+    def set_session(self, is_work):
         self.is_work_session = is_work
 
         if is_work:
@@ -164,6 +165,12 @@ class StudyTimerApp:
 
         self.update_time_display()
 
+    def show_reminder(self, title, message):
+        self.root.bell()
+        self.root,lift()
+        self.root.attributes("-topmost", True)
+        messagebox.showinfo(title, message)
+        self.root.attributes("-topmost", False)
 
     def show_new_word(self):
         try:
