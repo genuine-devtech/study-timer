@@ -106,14 +106,14 @@ class StudyTimerApp:
         self.reset_button.grid(row = 0, column = 2, padx = 5)
 
         #complete session counter
-        self.sessios_label = tk.Label(
+        self.sessions_label = tk.Label(
             self.root,
             text = "Sessions completed: 0",
             font = ("Roboto", 12),
             fg = TEXT_COLOR,
             bg = BG_COLOR,
         )
-        self.sessios_label.pack(pady = (15,0))
+        self.sessions_label.pack(pady = (15,0))
 
     #timer functions
     def update_time_display(self):
@@ -135,8 +135,7 @@ class StudyTimerApp:
         if self.remaining_seconds > 0:
             self.timer_id = self.root.after(1000, self.count_down)
         else:
-            self.is_running = False
-            self.timer_id = None
+            self.finish_session()
 
     #pause function
     def pause_timer(self):
@@ -148,8 +147,7 @@ class StudyTimerApp:
     #reset function
     def reset_timer(self):
         self.pause_timer() 
-        self.remaining_seconds = WORK_MINUTES * 60
-        self.update_time_display()
+        self.set_session(self.is_work_session)
 
     #switch the screeen and timer to a work or break session
     def set_session(self, is_work):
@@ -167,7 +165,7 @@ class StudyTimerApp:
 
     def show_reminder(self, title, message):
         self.root.bell()
-        self.root,lift()
+        self.root.lift()
         self.root.attributes("-topmost", True)
         messagebox.showinfo(title, message)
         self.root.attributes("-topmost", False)
@@ -179,7 +177,7 @@ class StudyTimerApp:
 
         if self.is_work_session:
             self.sessions_completed += 1
-            self.sessins_label.config(text=f"Sessions completed: {self.sessions_completed}")
+            self.sessions_label.config(text=f"Sessions completed: {self.sessions_completed}")
             self.show_reminder(
                 "Time for a break!",
                 f"Great work! You finished session {self.sessions_completed} .\n\n"
