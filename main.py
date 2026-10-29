@@ -172,6 +172,30 @@ class StudyTimerApp:
         messagebox.showinfo(title, message)
         self.root.attributes("-topmost", False)
 
+    #handle the end of a session and switch to the next one
+    def finish_session(self):
+        self.is_running = False
+        self.timer_id = None
+
+        if self.is_work_session:
+            self.sessions_completed += 1
+            self.sessins_label.config(text=f"Sessions completed: {self.sessions_completed}")
+            self.show_reminder(
+                "Time for a break!",
+                f"Great work! You finished session {self.sessions_completed} .\n\n"
+                f"Stand up, stretch, drink some water, and rest your eyes "
+                f"Stand up, stretch, drink some water, and rest your eyes "
+                f"for {BREAK_MINUTES} minutes.",
+            )
+            self.set_session(is_work = False)
+        else:
+            self.show_reminder(
+                "Break is over"
+                "Feeling refreshed? Let's get back to work. You've got this!",
+            )
+            self.set_session(is_work = True)
+        self.start_timer()
+
     def show_new_word(self):
         try:
             word, word_type, definition = get_random_word()
