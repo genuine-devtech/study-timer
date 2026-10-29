@@ -1,8 +1,9 @@
 import tkinter as tk
+from tkinter import messagebox
 from words import get_random_word
 
 # Settings
-WORK_MINUTES = 25 
+WORK_MINUTES = 1 
 BREAK_MINUTES = 5
 
 #Colors
@@ -28,6 +29,8 @@ class StudyTimerApp:
         self.remaining_seconds = WORK_MINUTES * 60
         self.is_running = False
         self.timer_id = None
+        self.is_work_session = True
+        self.sessions_completed = 0
 
         self.build_layout()
         self.show_new_word()
