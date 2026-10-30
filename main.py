@@ -177,7 +177,7 @@ class StudyTimerApp:
 
         if self.is_work_session:
             self.sessions_completed += 1
-            self.sessions_label.config(text=f"Sessions completed: {self.sessions_completed}")
+            self.session_label.config(text=f"Sessions completed: {self.sessions_completed}")
             self.show_reminder(
                 "Time for a break!",
                 f"Great work! You finished session {self.sessions_completed} .\n\n"
